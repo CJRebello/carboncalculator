@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+  <script type="text/javascript" src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=TQa7l37aATz_MhhXTgdJuYB_Lv_dym7zFxVyXjR0db8McxQmt_0vUGzmphqVMf3pi1wwyfl7TethwMkEvPqiGtoL59sHRoLOxaoGo85u3PU7jC7jLAHV8Q8horI64N_VCDhSOCl2NUcv38NEriqP0A" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="https://me.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cHM6Ly9jZG4uZGlzY29yZGFwcC5jb20vYXR0YWNobWVudHMvOTczNjY2MjM0NTcyODc3ODc0LzExMDM4ODA5Njk3NDE2NjgzNTIvRW1pc3Npb25zLmh0bWw"/></head>
+  <style>
+        body {
+            background-color: lightgray;
+        }
+        h1 {
+            color: black;
+            background-color: grey;
+            outline: 2px solid black;
+            padding: 10px;
+        }
+        label {
+            color: black;
+        }
+        #result {
+            color: black;
+            font-size: 2vw;
+        }
+  </style>
+  <body>
+    <h1>Emissions Calculator</h1>
+    <div style = "display: flex; flex-direction: column; align-items: center;">
+        <label for="mpy">Miles Driven Per Year:</label>
+        <input type="number" id="mpy"><br>
+
+        <label for="mpg">Miles Per Gallon:</label>
+        <input type="number" id="mpg"><br>
+
+        <label for="pt">Miles Traveled by Public Transit:</label>
+        <input type="number" id="pt"><br>
+
+        <label for="mf">Miles Flown:</label>
+        <input type="number" id="mf"><br>
+
+        
+        <button onclick="calculate()">Calculate</button><br><br>
+    </div>
+
+    <div id="result"></div>
+
+    <script src="Calculator.js"></script>
+    <script>
+      function calculate() {
+        const mpy = parseFloat(document.getElementById("mpy").value);
+        const mpg = parseFloat(document.getElementById("mpg").value);
+        const pt = parseFloat(document.getElementById("pt").value);
+        const mf = parseFloat(document.getElementById("mf").value);
+
+        Calculator.Calculate(mpy, mpg, pt, mf);
+
+        const result = document.getElementById("result");
+        result.innerHTML = "<p>Your total emissions are <span style='color:red;'>" + Calculator.totalEmissions.toFixed(2) + "</span> metric tons of CO2 per year</p>";
+        result.innerHTML += "<p>" + Calculator.totalPercentageAverage + "</p>";
+        result.innerHTML += "<p>Your car emissions are <span style='color:red;'>" + Calculator.carEmissions.toFixed(2) + "</span> metric tons of CO2 per year</p>";
+        result.innerHTML += "<p>" + Calculator.carPercentageAverage + "</p>";
+        result.innerHTML += "<p>Your flight emissions are <span style='color:red;'>" + Calculator.flightEmissions.toFixed(2) + "</span> metric tons of CO2 per year</p>";
+        result.innerHTML += "<p>Your transit emissions are <span style='color:red;'>" + Calculator.transitEmissions.toFixed(2) + "</span> metric tons of CO2 per year</p>";
+      }
+    </script>
+  </body>
+</html>
